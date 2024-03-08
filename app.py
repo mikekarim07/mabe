@@ -21,7 +21,7 @@ import time
 
 
 st.set_page_config(
-    page_title="Tax Package Model",
+    page_title="Conciliación de Reportes para la determinación del IVA acreeditable",
     page_icon="📈",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -29,3 +29,8 @@ st.set_page_config(
         'Get Help': 'mailto:miguel.karim@karimortega.com'
     }
 )
+
+st.image("https://mabeglobal.com/medias/?context=bWFzdGVyfGltYWdlc3wxNDE4fGltYWdlL3BuZ3xhR0ptTDJnMFpDODVNalU0TnpJNU5ETTVNall5fDA1NTc2N2UzYWEzOGJiZWI3ZjdjZWUyNWZhNzNhMjQ0YjdkOTBjOWFhNzRhNDZlYmJjMjg4Y2Q1ZGJhNDU2N2I", width=120)
+# st.header('Machine Learnig Model')
+st.subheader('Tax Package - Related Party Operations Category Classification Machine Learning Model')
+
