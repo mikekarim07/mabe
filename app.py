@@ -153,7 +153,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     AuxIVA['Documento Llave'] = AuxIVA['Referencia'].str[:-3]
     AuxIVA['Mes'] = AuxIVA['Fe.contabilización'].dt.month_name()
     AuxIVA_PGE = AuxIVA.groupby(['Mes'], as_index=False).agg({
-        'Cuenta': 'cpunt',
+        'Cuenta': 'count',
         })
     st.dataframe(AuxIVA_PGE)
     
