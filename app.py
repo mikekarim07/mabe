@@ -155,6 +155,17 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     AuxIVA_PGE = AuxIVA.groupby(['Mes'], as_index=False).agg({
         'Cuenta': 'count',
         })
+    min_cuenta_index = AuxIVA_PGE['Cuenta'].idxmin()
+
+    # Obtener el valor del mes correspondiente
+    mes_menor_cuenta = AuxIVA_PGE.loc[min_cuenta_index, 'Mes']
+    
+    # Mostrar el resultado
+    st.write(mes_menor_cuenta)
+
+
+
+    
     st.dataframe(AuxIVA_PGE)
     
     RepEgresosF38 = RepEgresos.copy()
