@@ -14,7 +14,7 @@ st.set_page_config(
 
 st.image("https://mabeglobal.com/medias/?context=bWFzdGVyfGltYWdlc3wxNDE4fGltYWdlL3BuZ3xhR0ptTDJnMFpDODVNalU0TnpJNU5ETTVNall5fDA1NTc2N2UzYWEzOGJiZWI3ZjdjZWUyNWZhNzNhMjQ0YjdkOTBjOWFhNzRhNDZlYmJjMjg4Y2Q1ZGJhNDU2N2I", width=120)
 st.header('Amarre del IVA')
-st.subheader('Plataforma Web dedicada a la conciliación de los distintos reportes para la determinación del los cálculos de impuestos')
+st.subheader('Plataforma Web dedicada a la determinación del IVA Acreditable')
 
 
 # Definir funciones para cargar archivos
