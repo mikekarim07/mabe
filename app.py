@@ -151,7 +151,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     # Auxiliar del IVA
     AuxIVA['Asignación Factoraje Publicado/ND (Cliente Proveedor)'] = AuxIVA['Asignación'].str[:10]
     AuxIVA['Documento Llave'] = AuxIVA['Referencia'].str[:-3]
-    # AuxIVA['Mes'] = AuxIVA['Fe.contab.'].dt.month_name()
+    AuxIVA['Mes'] = AuxIVA['Fe.contabilización'].dt.month_name()
     
     RepEgresosF38 = RepEgresos.copy()
     RepEgresosF38['Año Documento'] = RepEgresosF38['Fecha de Documento'].dt.year.astype(str)
