@@ -163,6 +163,14 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     # Mostrar el resultado
     st.write(mes_menor_cuenta)
 
+    def PE_GE(row):
+    # Verificar las condiciones
+        if mes_menor_cuenta is row['Mes']:
+            return "PE_GE"
+        else:
+            return ''
+
+    AuxIVA['Periodo_GE'] = AuxIVA.apply(PE_GE, axis=1)
 
 
     
