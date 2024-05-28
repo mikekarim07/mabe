@@ -152,8 +152,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     AuxIVA['Asignación Factoraje Publicado/ND (Cliente Proveedor)'] = AuxIVA['Asignación'].str[:10]
     AuxIVA['Documento Llave'] = AuxIVA['Referencia'].str[:-3]
     AuxIVA['Mes'] = AuxIVA['Fe.contabilización'].dt.month_name()
-    AuxIVA_PGE = AuxIVA.groupby(['Mes'], as_index=False).agg({
-        'Mes': 'count'})
+    AuxIVA_PGE = AuxIVA.groupby(['Mes'], as_index=False)
     st.dataframe(AuxIVA_PGE)
     
     RepEgresosF38 = RepEgresos.copy()
