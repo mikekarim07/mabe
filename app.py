@@ -154,6 +154,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     AuxIVA['Mes'] = AuxIVA['Fe.contabilización'].dt.month_name()
     AuxIVA_PGE = AuxIVA.groupby(['Mes'], as_index=False).agg({
         'Mes': 'count'})
+    st.dataframe(AuxIVA_PGE)
     
     RepEgresosF38 = RepEgresos.copy()
     RepEgresosF38['Año Documento'] = RepEgresosF38['Fecha de Documento'].dt.year.astype(str)
