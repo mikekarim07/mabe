@@ -151,6 +151,8 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     # Auxiliar del IVA
     AuxIVA['Asignación Factoraje Publicado/ND (Cliente Proveedor)'] = AuxIVA['Asignación'].str[:10]
     AuxIVA['Documento Llave'] = AuxIVA['Referencia'].str[:-3]
+    AuxIVA['Periodo'] = AuxIVA['Fe.contab.'].dt.month_name
+    
     RepEgresosF38 = RepEgresos.copy()
     RepEgresosF38['Año Documento'] = RepEgresosF38['Fecha de Documento'].dt.year.astype(str)
     RepEgresosF38['Año Documento'] = RepEgresosF38['Año Documento'].str[-2:]
@@ -169,7 +171,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
 
 
 
-    tab1, tab2 = st.tabs(["R_Pagos vs R_Egresos", "R_Factoraje vs R_Egresos"])
+    tab1, tab2, tab3 = st.tabs(["R_Pagos vs R_Egresos", "R_Factoraje vs R_Egresos", "Otro"])
 
     with tab1:
         st.subheader('Comparativo Reporte de Pagos vs Reporte de Egresos')
@@ -179,6 +181,9 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
         st.subheader('Comparativo Reporte de Factoraje vs Reporte de Egresos')
         st.dataframe(Comparativo_RFvsREg)
 
+    with tab3:
+        st.subheader('Comparativo Reporte de Factoraje vs Reporte de Egresos')
+        st.dataframe(Comparativo_RFvsREg)
 
 
 
