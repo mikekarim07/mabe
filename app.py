@@ -165,7 +165,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
 
     def PE_GE(row):
     # Verificar las condiciones
-        if mes_menor_cuenta is row['Mes']:
+        if mes_menor_cuenta == row['Mes']:
             return "PE_GE"
         else:
             return ''
