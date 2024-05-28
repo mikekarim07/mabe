@@ -155,7 +155,13 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     RepEgresosF38['Año Documento'] = RepEgresosF38['Fecha de Documento'].dt.year.astype(str)
     RepEgresosF38['Año Documento'] = RepEgresosF38['Año Documento'].str[-2:]
     RepEgresosF38['Documento Origen Llave'] = RepEgresosF38['Documento Origen'].astype(str) + RepEgresosF38['Año Documento']
-    AuxIVA['MDE'] = AuxIVA['Documento Llave'].map(lambda x: RepEgresosF38[RepEgresosF38['Documento Origen Llave'] == x]['IVA al TC de Pago'].values[0] if x in RepEgresosF38['Documento Origen Llave'].values else 0)
+
+    #Opcion 1 - Merge
+    RepEgresosF38 = RepEgresosF38[['Documento Origen Llave','IVA al TC de Pago']]
+    AuxIVA = AuxIVA.merge(RepEgresosF38, left_on="Documento Llave", right_on='Documento Origen Llave', how='left', suffixes=('', '_RE'))
+
+    #Opcion 2 - Funcion
+    # AuxIVA['MDE'] = AuxIVA['Documento Llave'].map(lambda x: RepEgresosF38[RepEgresosF38['Documento Origen Llave'] == x]['IVA al TC de Pago'].values[0] if x in RepEgresosF38['Documento Origen Llave'].values else 0)
     st.dataframe(AuxIVA)
     st.dataframe(RepEgresosF38)
 
