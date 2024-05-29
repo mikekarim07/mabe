@@ -139,7 +139,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
 
     def Comentarios_RE(row):
     # Verificar las condiciones
-        if  (-2 < row['Diferencia'] < 2):
+        if  (-2 > row['Diferencia'] > 2):
             return "Documento Faltante"
         else:
             return ''
