@@ -255,7 +255,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
 
     with tab3:
         st.subheader('Comparativo Reporte de Factoraje vs Reporte de Egresos')
-        st.dataframe(Comparativo_RFvsREg)
+        st.dataframe(RepEgresos)
 
 
 
