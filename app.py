@@ -225,6 +225,17 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     with tab1:
         st.subheader('Comparativo Reporte de Pagos vs Reporte de Egresos')
         st.dataframe(Comparativo_RPvsRE)
+        xls_buffer_docsfaltantes = BytesIO()
+        with pd.ExcelWriter(xls_buffer_docsfaltantes, engine='xlsxwriter') as writer:
+            Comparativo_RPvsRE.to_excel(writer, index=False, sheet_name='Documentos Faltantes')
+                    
+        # Descargar el archivo Excel en Streamlit
+        st.download_button(
+            label="Descargar Documentos Faltantes",
+            data=xls_buffer_docsfaltantes.getvalue(),
+            file_name="Documentos Faltantes",  # Puedes cambiar el nombre del archivo según tus necesidades
+            key='dwnld_bt_docs_falt'
+        )
 
     with tab2:
         st.subheader('Comparativo Reporte de Factoraje vs Reporte de Egresos')
