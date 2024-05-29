@@ -131,7 +131,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     RepPagos_comp = RepPagos.copy()
     RepPagos_comp = RepPagos_comp.groupby(["Doc. Compensacion", "Nombre", "CLASIFICACION 1", "Clasificacion 2", "NACIONALIDAD"], as_index=False).agg({
         ('Importe MDE': 'sum').round(2),
-        ('Importe ML': 'sum').round(2)
+        ('Importe ML': 'sum').round(2),
     })
     Comparativo_RPvsRE = RepPagos_comp.merge(RepEgresos_compPag, left_on="Doc. Compensacion", right_on='Docto de Compensación', how='left', suffixes=('', '_RE'))
     Comparativo_RPvsRE = Comparativo_RPvsRE[['Doc. Compensacion','Nombre','CLASIFICACION 1','Clasificacion 2','NACIONALIDAD','Importe MDE','Importe ML','Clase Docto Comp','Importe MDE_RE']]
