@@ -232,7 +232,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
 
 
 
-    tab1, tab2, tab3 = st.tabs(["R_Pagos vs R_Egresos", "R_Factoraje vs R_Egresos", "Otro"])
+    tab1, tab2, tab3 = st.tabs(["R_Pagos vs R_Egresos", "R_Factoraje vs R_Egresos", "Reporte de Egresos"])
 
     with tab1:
         st.subheader('Comparativo Reporte de Pagos vs Reporte de Egresos')
@@ -254,7 +254,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
         st.dataframe(Comparativo_RFvsREg)
 
     with tab3:
-        st.subheader('Comparativo Reporte de Factoraje vs Reporte de Egresos')
+        st.subheader('Reporte de Egresos')
         st.dataframe(RepEgresos)
 
 
