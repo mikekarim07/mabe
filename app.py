@@ -139,10 +139,10 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
 
     def Comentarios_RE(row):
     # Verificar las condiciones
-        if  (-2 > row['Diferencia']) or (2 < row['Diferencia']) :
+        if  ((-2 > row['Diferencia']) or (2 < row['Diferencia'])) and ((row['CLASIFICACION 1'] == "(Factoraje)") or (row['CLASIFICACION 1'] == "(Compensaciones)")):
             return "Documento Faltante"
         else:
-            return ''
+            return 'Ok'
 
     Comparativo_RPvsRE['Comentarios'] = Comparativo_RPvsRE.apply(Comentarios_RE, axis=1)
 
