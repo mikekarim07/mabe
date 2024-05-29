@@ -55,11 +55,18 @@ dtype_RepFact = {
 }
 
 dtype_AuxIVA = {
+    'Cuenta': str,
+    'Ejercicio': str,
+    'Período Contable': str,
+    'N° documento': str,
     'Clase de documento': str,
     'Asignación': str,
     'Referencia': str,
-    # 'Clasificacion': str,
-    # 'RFC de Proveedor': str,
+    # '': str,
+    # '': str,
+    # '': str,
+    # '': str,
+    # '': str,
 }
 
 
