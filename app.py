@@ -136,6 +136,24 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     Comparativo_RPvsRE = RepPagos_comp.merge(RepEgresos_compPag, left_on="Doc. Compensacion", right_on='Docto de Compensación', how='left', suffixes=('', '_RE'))
     Comparativo_RPvsRE = Comparativo_RPvsRE[['Doc. Compensacion','Nombre','CLASIFICACION 1','Clasificacion 2','NACIONALIDAD','Importe MDE','Importe ML','Clase Docto Comp','Importe MDE_RE']]
     Comparativo_RPvsRE['Diferencia'] = (Comparativo_RPvsRE['Importe MDE']-Comparativo_RPvsRE['Importe MDE_RE']).round(2)
+
+    def Comentarios_RE(row):
+    # Verificar las condiciones
+        if  (-2 < row['Diferencia'] < 2):
+            return "Documento Faltante"
+        else:
+            return ''
+
+    Comparativo_RPvsRE['Comentarios'] = Comparativo_RPvsRE.apply(Comentarios_RE, axis=1)
+
+
+    
+    # Comparativo_RPvsRE_DocFalt = Comparativo_RPvsRE[((Comparativo_RPvsRE['Diferencia'] > -2) & (Comparativo_RPvsRE['Diferencia'] < 2)) & ((Comparativo_RPvsRE['CLASIFICACION 1'] != "(Compensaciones)") & (Comparativo_RPvsRE['CLASIFICACION 1'] != "(Factoraje)"))
+
+
+
+
+
     
     # Comparativa de Reporte de Facturacion vs Reporte de Egresos
     RepFactoraje_compRE = RepFactoraje.copy()
