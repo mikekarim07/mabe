@@ -135,7 +135,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     })
     Comparativo_RPvsRE = RepPagos_comp.merge(RepEgresos_compPag, left_on="Doc. Compensacion", right_on='Docto de Compensación', how='left', suffixes=('', '_RE'))
     Comparativo_RPvsRE = Comparativo_RPvsRE[['Doc. Compensacion','Nombre','CLASIFICACION 1','Clasificacion 2','NACIONALIDAD','Importe MDE','Importe ML','Clase Docto Comp','Importe MDE_RE']]
-    Comparativo_RPvsRE['Diferencia'] = ['Importe MDE']-['Importe MDE_RE']
+    Comparativo_RPvsRE['Diferencia'] = Comparativo_RPvsRE['Importe MDE']-Comparativo_RPvsRE['Importe MDE_RE']
     
     # Comparativa de Reporte de Facturacion vs Reporte de Egresos
     RepFactoraje_compRE = RepFactoraje.copy()
