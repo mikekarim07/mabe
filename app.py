@@ -58,7 +58,7 @@ dtype_AuxIVA = {
     'Cuenta': str,
     'Ejercicio': str,
     'Período Contable': str,
-    'N° documento': str,
+    'Nº documento': str,
     'Clase de documento': str,
     'Asignación': str,
     'Referencia': str,
