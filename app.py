@@ -124,6 +124,10 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     RepFactoraje = load_sheet(uploaded_RepFactoraje, sheet_Rep_fact, dtype_RepFact)
     AuxIVA =  load_sheet(uploaded_AuxIVA, sheet_AuxIVA, dtype_AuxIVA)
 
+    # Limpiar reporte de egresos general
+    RepEgresos['Tipo Cambio Comp'] = RepEgresos['Tipo Cambio Comp'].fillna(value=1)
+    RepEgresos['Importe MDE'] = RepEgresos['Total al TC de Pago']/RepEgresos['Tipo Cambio Comp']
+    
     # Reemplazar errores en el reporte de pagos en las columnas Tipo 1 y Doc Comepnsacion
     ColsNA_RepPagos = ['TIPO 1', 'Doc. Compensacion']
     RepPagos[ColsNA_RepPagos] = RepPagos[ColsNA_RepPagos].fillna('')
@@ -134,9 +138,6 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
 
     #Comparativa de Reporte de Egresos vs Reporte de Pagos
     RepEgresos_compPag = RepEgresos.copy()
-    
-    RepEgresos_compPag['Tipo Cambio Comp'] = RepEgresos_compPag['Tipo Cambio Comp'].fillna(value=1)
-    RepEgresos_compPag['Importe MDE'] = RepEgresos_compPag['Total al TC de Pago']/RepEgresos_compPag['Tipo Cambio Comp']
     RepEgresos_compPag = RepEgresos_compPag[RepEgresos_compPag['Factoraje'] != 'X']
     RepEgresos_compPag = RepEgresos_compPag.groupby(['Clase Docto Comp', 'Docto de Compensación', 'NACIONALIDAD'], as_index=False).agg({
         'Importe MDE': 'sum',
