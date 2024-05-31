@@ -134,6 +134,9 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
 
     #Comparativa de Reporte de Egresos vs Reporte de Pagos
     RepEgresos_compPag = RepEgresos.copy()
+    st.write(reporte de egresos copy para comparaccion)
+    st.dataframe(RepEgresos_compPag)
+    
     RepEgresos_compPag['Importe MDE'] = RepEgresos_compPag['Total al TC de Pago']/RepEgresos_compPag['Tipo Cambio Comp']
     RepEgresos_compPag = RepEgresos_compPag[RepEgresos_compPag['Factoraje'] != 'X']
     RepEgresos_compPag = RepEgresos_compPag.groupby(['Clase Docto Comp', 'Docto de Compensación', 'NACIONALIDAD'], as_index=False).agg({
