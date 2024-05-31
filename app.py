@@ -194,6 +194,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     #----- Auxiliar del IVA
     AuxIVA['Asignación Factoraje Publicado/ND (Cliente Proveedor)'] = AuxIVA['Asignación'].str[:10]
     AuxIVA['Documento Llave'] = AuxIVA['Referencia'].str[:-3]
+    AuxIVA['Consecutivo'] = AuxIVA.groupby('Documento Llave').cumcount()
     AuxIVA['Mes'] = AuxIVA['Fe.contabilización'].dt.month_name()
     AuxIVA_PGE = AuxIVA.groupby(['Mes'], as_index=False).agg({
         'Cuenta': 'count',
@@ -235,7 +236,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
 
 
 
-    tab1, tab2, tab3 = st.tabs(["R_Pagos vs R_Egresos", "R_Factoraje vs R_Egresos", "Reporte de Egresos"])
+    tab1, tab2, tab3 = st.tabs(["R_Pagos vs R_Egresos", "R_Factoraje vs R_Egresos", "Conciliacion"])
 
     with tab1:
         st.subheader('Comparativo Reporte de Pagos vs Reporte de Egresos')
@@ -264,7 +265,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
         st.dataframe(Comparativo_RFvsREg)
 
     with tab3:
-        st.subheader('Reporte de Egresos')
+        st.subheader('Conciliacion')
         st.dataframe(RepEgresos)
 
 
