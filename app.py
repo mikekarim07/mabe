@@ -136,9 +136,6 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     RepEgresos_compPag = RepEgresos.copy()
     
     RepEgresos_compPag['Tipo Cambio Comp'] = RepEgresos_compPag['Tipo Cambio Comp'].fillna(value=1)
-    st.write('reporte de egresos copy para comparaccion')
-    st.dataframe(RepEgresos_compPag)
-    
     RepEgresos_compPag['Importe MDE'] = RepEgresos_compPag['Total al TC de Pago']/RepEgresos_compPag['Tipo Cambio Comp']
     RepEgresos_compPag = RepEgresos_compPag[RepEgresos_compPag['Factoraje'] != 'X']
     RepEgresos_compPag = RepEgresos_compPag.groupby(['Clase Docto Comp', 'Docto de Compensación', 'NACIONALIDAD'], as_index=False).agg({
@@ -146,13 +143,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
         'Total al TC de Pago': 'sum'
     })
     
-    
-    
-    st.write('reporte de egresos tabla pivote')
-    st.dataframe(RepEgresos_compPag)
-
-
-    
+        
     RepPagos_comp = RepPagos.copy()
     RepPagos_comp = RepPagos_comp.groupby(["Doc. Compensacion", "Nombre", "CLASIFICACION 1", "Clasificacion 2", "NACIONALIDAD"], as_index=False).agg({
         'Importe MDE': 'sum',
@@ -167,6 +158,10 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     # Verificar las condiciones
         if  ((row['Diferencia']>2) or (row['Diferencia']<-2)) and ((row['CLASIFICACION 1'] == "(Transferencias)") or (row['CLASIFICACION 1'] == "(Cheque)")) and (row['Doc. Compensacion'] != "") :
             return "Documento Faltante"
+        elif (row['CLASIFICACION 1'] == "(Factoraje)"):
+            return "Factoraje"
+        elif ((row['Diferencia']>2) or (row['Diferencia']<-2)) and (row['CLASIFICACION 1'] == "(Compensacion)"):
+            return "No es Flujo"
         else:
             return 'Ok'
 
