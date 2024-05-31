@@ -213,8 +213,6 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
 
     AuxIVA['Periodo_GE'] = AuxIVA.apply(PE_GE, axis=1)
 
-
-    
     st.dataframe(AuxIVA_PGE)
     
     RepEgresosF38 = RepEgresos.copy()
