@@ -185,6 +185,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     RepEgresos_compFact = RepEgresos_compFact[RepEgresos_compFact['Factoraje'] == 'X']
     RepEgresos_compFact = RepEgresos_compFact.groupby(['Clase Docto Comp', 'Docto de Compensación'], as_index=False).agg({
         'Importe MDE': 'sum'})
+    RepEgresos_compFact['Importe MDE'] = RepEgresos_compFact['Importe MDE'].round(2)
     Comparativo_RFvsREg = RepFactoraje_compRE.merge(RepEgresos_compFact, left_on="DCTO COMPENSACION", right_on='Docto de Compensación', how='left', suffixes=('', '_RE'))
     Comparativo_RFvsREg['Diferencia'] = Comparativo_RFvsREg['Importe MDE'] + Comparativo_RFvsREg['Importe MDE_RE']
     Comparativo_RFvsREg['Diferencia'] = pd.to_numeric(Comparativo_RFvsREg['Diferencia'], errors='coerce')
