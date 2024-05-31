@@ -251,6 +251,13 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     with tab1:
         st.subheader('Comparativo Reporte de Pagos vs Reporte de Egresos')
         st.dataframe(Comparativo_RPvsRE)
+
+        Nacionales = Comparativo_RPvsRE[(Comparativo_RPvsRE['NACIONALIDAD'] == 'NACIONAL') & (Comparativo_RPvsRE['Comentarios'] == 'Documento Faltantes')].shape[0]
+        Extranjeros = Comparativo_RPvsRE[(Comparativo_RPvsRE['NACIONALIDAD'] == 'EXTRANJERO') & (Comparativo_RPvsRE['Comentarios'] == 'Documento Faltantes')].shape[0]
+        st.write(Nacionales)
+        st.write(Extranjeros)
+
+        
         xls_buffer_docsfaltantes = BytesIO()
         with pd.ExcelWriter(xls_buffer_docsfaltantes, engine='xlsxwriter') as writer:
             Comparativo_RPvsRE.to_excel(writer, index=False, sheet_name='Documentos Faltantes')
