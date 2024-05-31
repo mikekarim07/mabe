@@ -24,9 +24,9 @@ st.set_page_config(
     }
 )
 
-st.image("https://mabeglobal.com/medias/?context=bWFzdGVyfGltYWdlc3wxNDE4fGltYWdlL3BuZ3xhR0ptTDJnMFpDODVNalU0TnpJNU5ETTVNall5fDA1NTc2N2UzYWEzOGJiZWI3ZjdjZWUyNWZhNzNhMjQ0YjdkOTBjOWFhNzRhNDZlYmJjMjg4Y2Q1ZGJhNDU2N2I", width=120)
+st.image("https://mabeglobal.com/medias/?context=bWFzdGVyfGltYWdlc3wxNDE4fGltYWdlL3BuZ3xhR0ptTDJnMFpDODVNalU0TnpJNU5ETTVNall5fDA1NTc2N2UzYWEzOGJiZWI3ZjdjZWUyNWZhNzNhMjQ0YjdkOTBjOWFhNzRhNDZlYmJjMjg4Y2Q1ZGJhNDU2N2I", width=200)
 st.header('Amarre del IVA')
-st.subheader('Plataforma Web dedicada a la determinación del IVA Acreditable')
+st.subheader('Plataforma Web para la determinación del IVA Acreditable')
 
 
 # Definir funciones para cargar archivos
@@ -147,6 +147,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     }).round(2)
     Comparativo_RPvsRE = RepPagos_comp.merge(RepEgresos_compPag, left_on="Doc. Compensacion", right_on='Docto de Compensación', how='left', suffixes=('', '_RE'))
     Comparativo_RPvsRE = Comparativo_RPvsRE[['Doc. Compensacion','Nombre','CLASIFICACION 1','Clasificacion 2','NACIONALIDAD','Importe MDE','Importe ML','Clase Docto Comp','Importe MDE_RE']]
+    Comparativo_RPvsRE['Importe MDE_RE'] = Comparativo_RPvsRE['Comparativo_RPvsRE'].fillna(value=0)
     Comparativo_RPvsRE['Diferencia'] = (Comparativo_RPvsRE['Importe MDE']+Comparativo_RPvsRE['Importe MDE_RE']).round(2)
 
     def Comentarios_RE(row):
@@ -245,7 +246,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
         st.download_button(
             label="Descargar Documentos Faltantes",
             data=xls_buffer_docsfaltantes.getvalue(),
-            file_name="Documentos Faltantes",  # Puedes cambiar el nombre del archivo según tus necesidades
+            file_name="Documentos Faltantes.xlsx",
             key='dwnld_bt_docs_falt'
         )
 
