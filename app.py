@@ -169,13 +169,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
 
 
     
-    # Comparativo_RPvsRE_DocFalt = Comparativo_RPvsRE[((Comparativo_RPvsRE['Diferencia'] > -2) & (Comparativo_RPvsRE['Diferencia'] < 2)) & ((Comparativo_RPvsRE['CLASIFICACION 1'] != "(Compensaciones)") & (Comparativo_RPvsRE['CLASIFICACION 1'] != "(Factoraje)"))
-
-
-
-
-
-    
+        
     # Comparativa de Reporte de Facturacion vs Reporte de Egresos
     RepFactoraje_compRE = RepFactoraje.copy()
     RepFactoraje_compRE['FECHA PAGO'] = RepFactoraje_compRE['FECHA PAGO'].astype(str)
@@ -208,7 +202,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     mes_menor_cuenta = AuxIVA_PGE.loc[min_cuenta_index, 'Mes']
     
     # Mostrar el resultado
-    st.write(mes_menor_cuenta)
+    st.write(f' Periodo GE: {mes_menor_cuenta}')
 
     def PE_GE(row):
     # Verificar las condiciones
