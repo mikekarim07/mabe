@@ -193,8 +193,17 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
 
     #----- Auxiliar del IVA
     AuxIVA['Asignación Factoraje Publicado/ND (Cliente Proveedor)'] = AuxIVA['Asignación'].str[:10]
-    AuxIVA['Documento Llave'] = AuxIVA['Referencia'].str[:-3]
-    AuxIVA['Consecutivo'] = AuxIVA.groupby('Documento Llave').cumcount()
+    AuxIVA['Doc Llave'] = AuxIVA['Referencia'].str[:-3]
+    AuxIVA['Consecutivo'] = AuxIVA.groupby('Doc Llave').cumcount()
+
+    def documento_llave(row):
+    # Verificar las condiciones
+        if  (row['Consecutivo'] == 0):
+            return row['Doc Llave']
+        elif (row['Consecutivo'] != 0):
+            return (row['Doc Llave'].astype(str)) + "X"
+    AuxIVA['Documento Llave'] = AuxIVA.apply(documento_llave, axis=1)
+    
     AuxIVA['Mes'] = AuxIVA['Fe.contabilización'].dt.month_name()
     AuxIVA_PGE = AuxIVA.groupby(['Mes'], as_index=False).agg({
         'Cuenta': 'count',
