@@ -188,9 +188,9 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     Comparativo_RFvsREg = RepFactoraje_compRE.merge(RepEgresos_compFact, left_on="DCTO COMPENSACION", right_on='Docto de Compensación', how='left', suffixes=('', '_RE'))
     Comparativo_RFvsREg['Diferencia'] = Comparativo_RFvsREg['Importe MDE'] + Comparativo_RFvsREg['Importe MDE_RE']
     Comparativo_RFvsREg['Diferencia'] = pd.to_numeric(Comparativo_RFvsREg['Diferencia'], errors='coerce')
-    Comparativo_RFvsREg['Diferencia'] = Comparativo_RFvsREg['Diferencia'].astype(float)
+    Comparativo_RFvsREg['Diferencia'] = Comparativo_RFvsREg['Diferencia'].round(2)
 
-    # Auxiliar del IVA
+    #----- Auxiliar del IVA
     AuxIVA['Asignación Factoraje Publicado/ND (Cliente Proveedor)'] = AuxIVA['Asignación'].str[:10]
     AuxIVA['Documento Llave'] = AuxIVA['Referencia'].str[:-3]
     AuxIVA['Mes'] = AuxIVA['Fe.contabilización'].dt.month_name()
