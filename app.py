@@ -140,6 +140,14 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
         'Importe MDE': 'sum',
         'Total al TC de Pago': 'sum'
     })
+    
+    
+    
+    st.write('reporte de egresos tabla pivote')
+    st.dataframe(RepEgresos_compPag)
+
+
+    
     RepPagos_comp = RepPagos.copy()
     RepPagos_comp = RepPagos_comp.groupby(["Doc. Compensacion", "Nombre", "CLASIFICACION 1", "Clasificacion 2", "NACIONALIDAD"], as_index=False).agg({
         'Importe MDE': 'sum',
