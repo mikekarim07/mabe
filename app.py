@@ -194,6 +194,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     #----- Auxiliar del IVA
     AuxIVA['Asignación Factoraje Publicado/ND (Cliente Proveedor)'] = AuxIVA['Asignación'].str[:10]
     AuxIVA['Doc Llave'] = AuxIVA['Referencia'].str[:-3]
+    AuxIVA['Doc Llave'] = AuxIVA['Doc Llave'].astype(str)
     AuxIVA['Consecutivo'] = AuxIVA.groupby('Doc Llave').cumcount()
 
     def documento_llave(row):
