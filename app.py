@@ -201,7 +201,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
         if  (row['Consecutivo'] == 0):
             return row['Doc Llave']
         elif (row['Consecutivo'] != 0):
-            return (row['Doc Llave'].astype(str)) + "X"
+            return row['Doc Llave'] + "X"
     AuxIVA['Documento Llave'] = AuxIVA.apply(documento_llave, axis=1)
     
     AuxIVA['Mes'] = AuxIVA['Fe.contabilización'].dt.month_name()
