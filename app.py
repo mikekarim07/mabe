@@ -252,8 +252,8 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
         st.subheader('Comparativo Reporte de Pagos vs Reporte de Egresos')
         st.dataframe(Comparativo_RPvsRE)
 
-        Nacionales = Comparativo_RPvsRE[(Comparativo_RPvsRE['NACIONALIDAD'] == 'NACIONAL') & (Comparativo_RPvsRE['Comentarios'] == 'Documento Faltantes')].shape[0]
-        Extranjeros = Comparativo_RPvsRE[(Comparativo_RPvsRE['NACIONALIDAD'] == 'EXTRANJERO') & (Comparativo_RPvsRE['Comentarios'] == 'Documento Faltantes')].shape[0]
+        Nacionales = Comparativo_RPvsRE[(Comparativo_RPvsRE['NACIONALIDAD'] == 'NACIONAL') & (Comparativo_RPvsRE['Comentarios'] == 'Documento Faltante')].shape[0]
+        Extranjeros = Comparativo_RPvsRE[(Comparativo_RPvsRE['NACIONALIDAD'] == 'EXTRANJERO') & (Comparativo_RPvsRE['Comentarios'] == 'Documento Faltante')].shape[0]
         st.write(Nacionales)
         st.write(Extranjeros)
 
