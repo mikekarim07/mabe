@@ -136,7 +136,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     ColsNA_RepFact = ['INSTITUCION']
     RepFactoraje[ColsNA_RepFact] = RepFactoraje[ColsNA_RepFact].fillna('')
 
-    #Comparativa de Reporte de Egresos vs Reporte de Pagos
+    #----- Comparativa de Reporte de Egresos vs Reporte de Pagos -----#
     RepEgresos_compPag = RepEgresos.copy()
     RepEgresos_compPag = RepEgresos_compPag[RepEgresos_compPag['Factoraje'] != 'X']
     RepEgresos_compPag = RepEgresos_compPag.groupby(['Clase Docto Comp', 'Docto de Compensación', 'NACIONALIDAD'], as_index=False).agg({
@@ -171,7 +171,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
 
     
         
-    # Comparativa de Reporte de Facturacion vs Reporte de Egresos
+    #----- Comparativa de Reporte de Facturacion vs Reporte de Egresos -----#
     RepFactoraje_compRE = RepFactoraje.copy()
     RepFactoraje_compRE['FECHA PAGO'] = RepFactoraje_compRE['FECHA PAGO'].astype(str)
     RepFactoraje_compRE['DCTO COMPENSACION'] = RepFactoraje_compRE['DCTO COMPENSACION'].astype(str)
@@ -187,8 +187,9 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
         'Importe MDE': 'sum',
         'Total al TC de Pago': 'sum'})
     Comparativo_RFvsREg = RepFactoraje_compRE.merge(RepEgresos_compFact, left_on="DCTO COMPENSACION", right_on='Docto de Compensación', how='left', suffixes=('', '_RE'))
-    Comparativo_RFvsREg['Dif MDE'] = Comparativo_RFvsREg['Importe MDE'] + Comparativo_RFvsREg['Importe MDE_RE']
-    Comparativo_RFvsREg['Dif ML'] = Comparativo_RFvsREg['Importe ML'] + Comparativo_RFvsREg['Total al TC de Pago']
+    Comparativo_RFvsREg['Diferencia'] = Comparativo_RFvsREg['Importe MDE'] + Comparativo_RFvsREg['Importe MDE_RE']
+    Comparativo_RFvsREg['Diferencia'] = pd.to_numeric(Comparativo_RFvsREg['Diferencia'], errors='coerce')
+    
 
     # Auxiliar del IVA
     AuxIVA['Asignación Factoraje Publicado/ND (Cliente Proveedor)'] = AuxIVA['Asignación'].str[:10]
