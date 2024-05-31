@@ -134,6 +134,8 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
 
     #Comparativa de Reporte de Egresos vs Reporte de Pagos
     RepEgresos_compPag = RepEgresos.copy()
+    
+    RepEgresos_compPag['Tipo Cambio Comp'] = RepEgresos_compPag['Tipo Cambio Comp'].fillna(value=1)
     st.write('reporte de egresos copy para comparaccion')
     st.dataframe(RepEgresos_compPag)
     
