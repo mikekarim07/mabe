@@ -271,12 +271,12 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
         st.dataframe(RepEgresos)
 
 
-doc_faltantes = Comparativo_RPvsRE[Comparativo_RPvsRE['Comentarios'] == "Documento Faltante"]
-
-
-
-current_datetime = datetime.now().strftime('%y%m%d_%H%M')
-file_name_resumen = f'Resumen_{current_datetime}.xlsx'
+    doc_faltantes = Comparativo_RPvsRE[Comparativo_RPvsRE['Comentarios'] == "Documento Faltante"]
+    
+    
+    
+    current_datetime = datetime.now().strftime('%y%m%d_%H%M')
+    file_name_resumen = f'Resumen_{current_datetime}.xlsx'
 
     xls_buffer_docsfaltantes = BytesIO()
     with pd.ExcelWriter(xls_buffer_docsfaltantes, engine='xlsxwriter') as writer:
