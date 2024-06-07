@@ -257,7 +257,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
         Extranjeros = Comparativo_RPvsRE[(Comparativo_RPvsRE['NACIONALIDAD'] == 'EXTRANJERO') & (Comparativo_RPvsRE['Comentarios'] == 'Documento Faltante')].shape[0]
         st.write(f'Total de documento **NACIONALES** no encontrados: {Nacionales}')
         st.write(f'Total de documento **EXTRANJEROS** no encontrados: {Extranjeros}')
-        st.write('''Dar click en el boton :point_down:"Descargar Documentos Faltantes" para descargar el archivo de excel que contiene el total de documentos del reporte de pagos no encontrados en el reporte de Egresos.''')
+        st.write('''Dar click en el boton :point_down:"Resumen Comparativo" para descargar el archivo de excel que contiene el total de documentos del reporte de pagos no encontrados en el reporte de Egresos.''')
 
         
         
