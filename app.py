@@ -226,7 +226,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
 
     AuxIVA['Periodo_GE'] = AuxIVA.apply(PE_GE, axis=1)
 
-    st.dataframe(AuxIVA_PGE)
+    # st.dataframe(AuxIVA_PGE)
     
     RepEgresosF38 = RepEgresos.copy()
     RepEgresosF38['Año Documento'] = RepEgresosF38['Fecha de Documento'].dt.year.astype(str)
@@ -239,8 +239,8 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
 
     #Opcion 2 - Funcion
     # AuxIVA['MDE'] = AuxIVA['Documento Llave'].map(lambda x: RepEgresosF38[RepEgresosF38['Documento Origen Llave'] == x]['IVA al TC de Pago'].values[0] if x in RepEgresosF38['Documento Origen Llave'].values else 0)
-    st.dataframe(AuxIVA)
-    st.dataframe(RepEgresosF38)
+    # st.dataframe(AuxIVA)
+    # st.dataframe(RepEgresosF38)
 
 
 
