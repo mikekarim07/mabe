@@ -123,7 +123,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje:
     RepEgresos = load_sheet(uploaded_RepEgresos, 'Sheet1', dtype_RepEgresos)
     RepPagos = load_sheet(uploaded_RepPagos, sheet_Rep_pagos, dtype_RepPagos)
     RepFactoraje = load_sheet(uploaded_RepFactoraje, sheet_Rep_fact, dtype_RepFact)
-    AuxIVA =  load_sheet(uploaded_AuxIVA, sheet_AuxIVA, dtype_AuxIVA)
+    # AuxIVA =  load_sheet(uploaded_AuxIVA, sheet_AuxIVA, dtype_AuxIVA)
 
     # Limpiar reporte de egresos general
     RepEgresos['Tipo Cambio Comp'] = RepEgresos['Tipo Cambio Comp'].fillna(value=1)
