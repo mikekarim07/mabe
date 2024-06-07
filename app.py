@@ -249,13 +249,16 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     tab1, tab2, tab3 = st.tabs(["R_Pagos vs R_Egresos", "R_Factoraje vs R_Egresos", "Conciliacion"])
 
     with tab1:
-        st.subheader('Comparativo Reporte de Pagos vs Reporte de Egresos')
+        st.subheader('Comparativo de Reporte de Pagos vs Reporte de Egresos')
+        st.markdown('''Detalle del total de documentos en el :red-bold[Reporte de Pagos] que no se encontraron en el :blue[Reporte de Egresos]'''
+    #     :red[Streamlit] :orange[can] :green[write] :blue[text] :violet[in]
+    # :gray[pretty] :rainbow[colors] and :blue-background[highlight] text.''')
         st.dataframe(Comparativo_RPvsRE)
 
         Nacionales = Comparativo_RPvsRE[(Comparativo_RPvsRE['NACIONALIDAD'] == 'NACIONAL') & (Comparativo_RPvsRE['Comentarios'] == 'Documento Faltante')].shape[0]
         Extranjeros = Comparativo_RPvsRE[(Comparativo_RPvsRE['NACIONALIDAD'] == 'EXTRANJERO') & (Comparativo_RPvsRE['Comentarios'] == 'Documento Faltante')].shape[0]
-        st.write(Nacionales)
-        st.write(Extranjeros)
+        st.write(f'Total de documento nacionales no encontrados: {Nacionales})
+        st.write(f'Total de documento nacionales no encontrados: {Extranjeros})
 
         
         xls_buffer_docsfaltantes = BytesIO()
