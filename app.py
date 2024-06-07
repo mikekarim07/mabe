@@ -250,7 +250,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
 
     with tab1:
         st.subheader('Comparativo de Reporte de Pagos vs Reporte de Egresos')
-        st.markdown('''Detalle del total de documentos en el **:yellow-background:red[Reporte de Pagos]** que no se encontraron en el :blue-background[Reporte de Egresos].''')
+        st.markdown('''Detalle del total de documentos en el **:yellow-background[:red[Reporte de Pagos]]** que no se encontraron en el :blue-background[Reporte de Egresos].''')
     #     :red[Streamlit] :orange[can] :green[write] :blue[text] :violet[in]
     # :gray[pretty] :rainbow[colors] and :blue-background[highlight] text.''')
         st.dataframe(Comparativo_RPvsRE)
