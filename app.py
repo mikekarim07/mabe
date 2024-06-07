@@ -257,7 +257,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
 
         Nacionales = Comparativo_RPvsRE[(Comparativo_RPvsRE['NACIONALIDAD'] == 'NACIONAL') & (Comparativo_RPvsRE['Comentarios'] == 'Documento Faltante')].shape[0]
         Extranjeros = Comparativo_RPvsRE[(Comparativo_RPvsRE['NACIONALIDAD'] == 'EXTRANJERO') & (Comparativo_RPvsRE['Comentarios'] == 'Documento Faltante')].shape[0]
-        st.write(f'Total de documento nacionales no encontrados: {Nacionales}')
+        st.write(f'Total de documento **nacionales** no encontrados: {Nacionales}')
         st.write(f'Total de documento nacionales no encontrados: {Extranjeros}')
 
         
