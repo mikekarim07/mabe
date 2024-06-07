@@ -118,7 +118,8 @@ st.sidebar.divider()
 
 
 
-if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploaded_AuxIVA:
+# if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploaded_AuxIVA:
+if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje:
     RepEgresos = load_sheet(uploaded_RepEgresos, 'Sheet1', dtype_RepEgresos)
     RepPagos = load_sheet(uploaded_RepPagos, sheet_Rep_pagos, dtype_RepPagos)
     RepFactoraje = load_sheet(uploaded_RepFactoraje, sheet_Rep_fact, dtype_RepFact)
@@ -191,40 +192,40 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     Comparativo_RFvsREg['Diferencia'] = pd.to_numeric(Comparativo_RFvsREg['Diferencia'], errors='coerce')
     Comparativo_RFvsREg['Diferencia'] = Comparativo_RFvsREg['Diferencia'].round(2)
 
-    #----- Auxiliar del IVA
-    AuxIVA['Asignación Factoraje Publicado/ND (Cliente Proveedor)'] = AuxIVA['Asignación'].str[:10]
-    AuxIVA['Doc Llave'] = AuxIVA['Referencia'].str[:-3]
-    AuxIVA['Doc Llave'] = AuxIVA['Doc Llave'].astype(str)
-    AuxIVA['Consecutivo'] = AuxIVA.groupby('Doc Llave').cumcount()
+    # #----- Auxiliar del IVA
+    # AuxIVA['Asignación Factoraje Publicado/ND (Cliente Proveedor)'] = AuxIVA['Asignación'].str[:10]
+    # AuxIVA['Doc Llave'] = AuxIVA['Referencia'].str[:-3]
+    # AuxIVA['Doc Llave'] = AuxIVA['Doc Llave'].astype(str)
+    # AuxIVA['Consecutivo'] = AuxIVA.groupby('Doc Llave').cumcount()
 
-    def documento_llave(row):
-    # Verificar las condiciones
-        if  (row['Consecutivo'] == 0):
-            return row['Doc Llave']
-        elif (row['Consecutivo'] != 0):
-            return row['Doc Llave'] + "X"
-    AuxIVA['Documento Llave'] = AuxIVA.apply(documento_llave, axis=1)
+    # def documento_llave(row):
+    # # Verificar las condiciones
+    #     if  (row['Consecutivo'] == 0):
+    #         return row['Doc Llave']
+    #     elif (row['Consecutivo'] != 0):
+    #         return row['Doc Llave'] + "X"
+    # AuxIVA['Documento Llave'] = AuxIVA.apply(documento_llave, axis=1)
     
-    AuxIVA['Mes'] = AuxIVA['Fe.contabilización'].dt.month_name()
-    AuxIVA_PGE = AuxIVA.groupby(['Mes'], as_index=False).agg({
-        'Cuenta': 'count',
-        })
-    min_cuenta_index = AuxIVA_PGE['Cuenta'].idxmin()
+    # AuxIVA['Mes'] = AuxIVA['Fe.contabilización'].dt.month_name()
+    # AuxIVA_PGE = AuxIVA.groupby(['Mes'], as_index=False).agg({
+    #     'Cuenta': 'count',
+    #     })
+    # min_cuenta_index = AuxIVA_PGE['Cuenta'].idxmin()
 
-    # Obtener el valor del mes correspondiente
-    mes_menor_cuenta = AuxIVA_PGE.loc[min_cuenta_index, 'Mes']
+    # # Obtener el valor del mes correspondiente
+    # mes_menor_cuenta = AuxIVA_PGE.loc[min_cuenta_index, 'Mes']
     
-    # Mostrar el resultado
-    st.write(f' Periodo GE: {mes_menor_cuenta}')
+    # # Mostrar el resultado
+    # st.write(f' Periodo GE: {mes_menor_cuenta}')
 
-    def PE_GE(row):
-    # Verificar las condiciones
-        if mes_menor_cuenta == row['Mes']:
-            return "PE_GE"
-        else:
-            return ''
+    # def PE_GE(row):
+    # # Verificar las condiciones
+    #     if mes_menor_cuenta == row['Mes']:
+    #         return "PE_GE"
+    #     else:
+    #         return ''
 
-    AuxIVA['Periodo_GE'] = AuxIVA.apply(PE_GE, axis=1)
+    # AuxIVA['Periodo_GE'] = AuxIVA.apply(PE_GE, axis=1)
 
     # st.dataframe(AuxIVA_PGE)
     
@@ -233,18 +234,9 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     RepEgresosF38['Año Documento'] = RepEgresosF38['Año Documento'].str[-2:]
     RepEgresosF38['Documento Origen Llave'] = RepEgresosF38['Documento Origen'].astype(str) + RepEgresosF38['Año Documento']
 
-    #Opcion 1 - Merge
-    RepEgresosF38 = RepEgresosF38[['Documento Origen Llave','IVA al TC de Pago']]
-    AuxIVA = AuxIVA.merge(RepEgresosF38, left_on="Documento Llave", right_on='Documento Origen Llave', how='left', suffixes=('', '_RE'))
-
-    #Opcion 2 - Funcion
-    # AuxIVA['MDE'] = AuxIVA['Documento Llave'].map(lambda x: RepEgresosF38[RepEgresosF38['Documento Origen Llave'] == x]['IVA al TC de Pago'].values[0] if x in RepEgresosF38['Documento Origen Llave'].values else 0)
-    # st.dataframe(AuxIVA)
-    # st.dataframe(RepEgresosF38)
-
-
-
-
+    # #Opcion 1 - Merge
+    # RepEgresosF38 = RepEgresosF38[['Documento Origen Llave','IVA al TC de Pago']]
+    # AuxIVA = AuxIVA.merge(RepEgresosF38, left_on="Documento Llave", right_on='Documento Origen Llave', how='left', suffixes=('', '_RE'))
 
     tab1, tab2, tab3 = st.tabs(["R_Pagos vs R_Egresos", "R_Factoraje vs R_Egresos", "Conciliacion"])
 
