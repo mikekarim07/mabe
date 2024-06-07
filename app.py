@@ -251,8 +251,6 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     with tab1:
         st.subheader('Comparativo de Reporte de Pagos vs Reporte de Egresos')
         st.markdown('''Detalle del total de documentos en el **:red-background[Reporte de Pagos]** que no se encontraron en el **:blue-background[Reporte de Egresos]**.''')
-    #     :red[Streamlit] :orange[can] :green[write] :blue[text] :violet[in]
-    # :gray[pretty] :rainbow[colors] and :blue-background[highlight] text.''')
         st.dataframe(Comparativo_RPvsRE)
 
         Nacionales = Comparativo_RPvsRE[(Comparativo_RPvsRE['NACIONALIDAD'] == 'NACIONAL') & (Comparativo_RPvsRE['Comentarios'] == 'Documento Faltante')].shape[0]
@@ -262,17 +260,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
         st.write('''Dar click en el boton :point_down:"Descargar Documentos Faltantes" para descargar el archivo de excel que contiene el total de documentos del reporte de pagos no encontrados en el reporte de Egresos.''')
 
         
-        xls_buffer_docsfaltantes = BytesIO()
-        with pd.ExcelWriter(xls_buffer_docsfaltantes, engine='xlsxwriter') as writer:
-            Comparativo_RPvsRE.to_excel(writer, index=False, sheet_name='Documentos Faltantes')
-                    
-        # Descargar el archivo Excel en Streamlit
-        st.download_button(
-            label="Descargar Documentos Faltantes",
-            data=xls_buffer_docsfaltantes.getvalue(),
-            file_name="Documentos Faltantes.xlsx",
-            key='dwnld_bt_docs_falt'
-        )
+        
 
     with tab2:
         st.subheader('Comparativo Reporte de Factoraje vs Reporte de Egresos')
@@ -283,5 +271,29 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
         st.dataframe(RepEgresos)
 
 
+doc_faltantes = Comparativo_RPvsRE[Comparativo_RPvsRE['Comentarios'] == "Documento Faltante"]
 
 
+
+current_datetime = datetime.now().strftime('%y%m%d_%H%M')
+file_name_resumen = f'Resumen_{current_datetime}.xlsx'
+
+    xls_buffer_docsfaltantes = BytesIO()
+    with pd.ExcelWriter(xls_buffer_docsfaltantes, engine='xlsxwriter') as writer:
+        Comparativo_RPvsRE.to_excel(writer, index=False, sheet_name='Comp_RPvsRE')
+        Comparativo_RFvsREg.to_excel(writer, index=False, sheet_name='Comp_RFactvsRE')
+        doc_faltantes.to_excel(writer, index=False, sheet_name='Doc_Faltantes')
+
+
+
+
+    # Descargar el archivo Excel en Streamlit
+    st.download_button(
+        label="Resumen Comparativo",
+        data=xls_buffer_docsfaltantes.getvalue(),
+        file_name="file_name_resumen",
+        key='Download_Resumen'
+    )
+    
+    
+    
