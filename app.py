@@ -105,15 +105,15 @@ if uploaded_RepFactoraje is not None:
 
 st.sidebar.divider()
 
-uploaded_AuxIVA = st.sidebar.file_uploader("Carga el Auxiliar del IVA de la cuenta 1330011002", type=["xlsx"])
-if uploaded_AuxIVA is not None:
-    # Obtener nombres de las hojas del archivo
-    sheet_names_AuxIVA = get_sheet_names(uploaded_AuxIVA)
+# uploaded_AuxIVA = st.sidebar.file_uploader("Carga el Auxiliar del IVA de la cuenta 1330011002", type=["xlsx"])
+# if uploaded_AuxIVA is not None:
+#     # Obtener nombres de las hojas del archivo
+#     sheet_names_AuxIVA = get_sheet_names(uploaded_AuxIVA)
     
-    # Seleccionar la hoja de Excel
-    sheet_AuxIVA = st.sidebar.selectbox("Seleccionar hoja del reporte de pagos que contiene los datos para procesar", sheet_names_AuxIVA)
+#     # Seleccionar la hoja de Excel
+#     sheet_AuxIVA = st.sidebar.selectbox("Seleccionar hoja del reporte de pagos que contiene los datos para procesar", sheet_names_AuxIVA)
 
-st.sidebar.divider()
+# st.sidebar.divider()
 
 
 
