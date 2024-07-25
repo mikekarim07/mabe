@@ -28,7 +28,7 @@ st.set_page_config(
 st.image("https://mabeglobal.com/medias/?context=bWFzdGVyfGltYWdlc3wxNDE4fGltYWdlL3BuZ3xhR0ptTDJnMFpDODVNalU0TnpJNU5ETTVNall5fDA1NTc2N2UzYWEzOGJiZWI3ZjdjZWUyNWZhNzNhMjQ0YjdkOTBjOWFhNzRhNDZlYmJjMjg4Y2Q1ZGJhNDU2N2I", width=200)
 st.header('Amarre del IVA')
 st.subheader('Plataforma Web para la determinación del IVA Acreditable')
-
+st.caption("Update 25/Jul//2024")
 
 # Definir funciones para cargar archivos
 @st.cache_data
