@@ -266,8 +266,10 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     RE_AB = RepEgresos.copy()
     st.write('Reporte de egresos puro')
     st.dataframe(RE_AB)
-    RE_AB = RE_AB[RE_AB['IVA MO']]
-
+    RE_AB = RE_AB[RE_AB['Clase Docto Comp']== 'AB']
+    st.write('Reporte de egresos solo abs')
+    st.dataframe(RE_AB)
+    
 
 
     
