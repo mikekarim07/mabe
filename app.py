@@ -264,9 +264,10 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     
     Fact_publicado = Fact_publicado.merge(Fact_pub_textcab, left_on="Nº doc.", right_on='Documento', how='left')
     RE_AB = RepEgresos.copy()
-    st.write('Reporte de egresos puro')
-    st.dataframe(RE_AB)
+    # st.write('Reporte de egresos puro')
+    # st.dataframe(RE_AB)
     RE_AB = RE_AB[RE_AB['Clase Docto Comp']== 'AB']
+    RE_AB = RE_AB[['Clase Docto Comp', 'Docto de Compensación', 'Base al TC de Pago', 'Documento Origen']]
     st.write('Reporte de egresos solo abs')
     st.dataframe(RE_AB)
     
