@@ -259,8 +259,8 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
             return 0
     Fact_publicado['IVA MO'] = Fact_publicado.apply(fact_pag_iva_mo, axis=1).round(2)
     Fact_publicado = Fact_publicado[['Nº doc.', 'Mon.', 'Base', 'IVA ML', 'IVA MO']]
-    # st.write("factoraje publicado")
-    # st.dataframe(Fact_publicado)
+    st.write("factoraje publicado")
+    st.dataframe(Fact_publicado)
     
     Fact_publicado = Fact_publicado.merge(Fact_pub_textcab, left_on="Nº doc.", right_on='Documento', how='left')
     st.write("factoraje publicado con text cab")
