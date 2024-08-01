@@ -270,7 +270,7 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     RE_AB = RE_AB[['Clase Docto Comp', 'Docto de Compensación', 'Base al TC de Pago', 'Documento Origen']]
     st.write('Reporte de egresos solo abs')
     st.dataframe(RE_AB)
-    
+    Fact_publicado = Fact_publicado.merge(RE_AB, left_on='TEXT CAB cartera', right_on='Documento Origen', how='left')
 
 
     
