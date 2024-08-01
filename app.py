@@ -263,6 +263,14 @@ if uploaded_RepEgresos and uploaded_RepPagos and uploaded_RepFactoraje and uploa
     st.dataframe(Fact_publicado)
     
     Fact_publicado = Fact_publicado.merge(Fact_pub_textcab, left_on="Nº doc.", right_on='Documento', how='left')
+    RE_AB = RepEgresos.copy()
+    st.write('Reporte de egresos puro')
+    st.dataframe(RE_AB)
+    RE_AB = RE_AB[RE_AB['IVA MO']]
+
+
+
+    
     st.write("factoraje publicado con text cab")
     st.dataframe(Fact_publicado)
 
