@@ -57,6 +57,7 @@ dtype_RepEgresos = {
     'UUID Complemento': str,
     'Moneda Comp': str,
     'RFC de Proveedor': str,
+    'Documento Origen': str,
 }
 
 dtype_RepFact = {
